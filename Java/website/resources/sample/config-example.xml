@@ -10,7 +10,7 @@
     <add key="BankId.Acquirer.TransactionUrl" value="" />
     <add key="BankId.Acquirer.StatusUrl" value="" />
     
-    <add key="BankId.KeyStore.Location" value="" />
+    <add key="BankId.KeyStore.Location" value="your-certs-here.jks" />
     <add key="BankId.KeyStore.Password" value="" />
     
     <add key="BankId.Merchant.Certificate.Alias" value="" />
