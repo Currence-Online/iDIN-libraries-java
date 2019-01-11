@@ -1,0 +1,16 @@
+Release Notes BankId.Merchant.Library
+
+v 1.2
+# 101813 [Java] Add Signing service
+
+v 1.0.5.6
+#101812: [Java] Remove loa2
+#104533: [java] Consumer Initials: accept ligatures and digraphs
+
+v 1.0.5.5
+#84038 [Java] Allow merchants to configure two acquiring public keys
+
+v 1.0.5.4
+
+Bugfixes
+#96332:[Java] [Java] Adjust attributes (ConsumerPrefLastName & ConsumerPrefLastNamePrefix)
