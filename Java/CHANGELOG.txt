@@ -1,5 +1,9 @@
 Release Notes BankId.Merchant.Library
 
+v 1.2.1
+Bugfixes
+# 118468 [Java] The attribute for electronic signing cannot be combined with other services in Java iDIN Libraries
+
 v 1.2
 # 101813 [Java] Add Signing service
 
