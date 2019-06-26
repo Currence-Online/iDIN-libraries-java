@@ -3,8 +3,6 @@ package net.bankid.merchant.library;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -66,17 +64,21 @@ class BankIdMessageBuilder {
     
     private static ExtensionsType getAuthnRequestExtensions(AuthenticationRequest authenticationRequest) {
     	ExtensionsType result = new ExtensionsType();
+    	String documentId = authenticationRequest.documentID;
     	
-    	Element documentIdAttribute = getDocumentIdElement(authenticationRequest.documentID);
-    	if(documentIdAttribute != null) {
-    		result.getAny().add(documentIdAttribute);
-    	}	
+		if (documentId != null && !"".equals(documentId)) {
+			Element documentIdAttribute = getDocumentIdElement(authenticationRequest.documentID);
+
+			if (documentIdAttribute != null) {
+				result.getAny().add(documentIdAttribute);
+			}
+			return result;
+		}
     	   	
-    	return result;
+    	return null;
     }
     
     private static Element getDocumentIdElement(String documentID) {
-		documentID = documentID == null ? "" : documentID;
 		AttributeType documentIdAttribute = new AttributeType();
 		documentIdAttribute.setName(SamlAttribute.DocumentId);
 		documentIdAttribute.getAttributeValue().add(documentID);
