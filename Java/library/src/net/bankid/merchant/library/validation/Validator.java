@@ -17,6 +17,7 @@ import schemas.idx.AcquirerTrxRes;
 import schemas.idx.DirectoryReq;
 import schemas.idx.DirectoryRes;
 import schemas.saml.protocol.AuthnRequestType;
+import schemas.saml.protocol.ExtensionsType;
 
 /**
  * Class used for validating different fields
@@ -268,22 +269,27 @@ public class Validator {
     
 	private static void checkSigning(AuthnRequestType authnReq) throws CommunicatorException {
 		String documentId = "";
-		if (!authnReq.getExtensions().getAny().isEmpty()) {
-			Element documentIdAttribute = (Element) authnReq.getExtensions().getAny().get(0);
+		ExtensionsType extensions = authnReq.getExtensions();
+		if (extensions != null && !extensions.getAny().isEmpty()) {
+			Element documentIdAttribute = (Element) extensions.getAny().get(0);
 			documentId = documentIdAttribute.getElementsByTagName("AttributeValue").item(0).getTextContent();
 			checkByValue(documentId, BankId_DocumentID);
 		}
 		
 		int requestedServiceId = authnReq.getAttributeConsumingServiceIndex();
 		if (!documentId.isEmpty()) {
-			if ((requestedServiceId & ServiceIds.Sign) != 0 && requestedServiceId != ServiceIds.Sign) {
-				throw new CommunicatorException("Sign cannnot be combined with other services");
+			if ((requestedServiceId & ServiceIds.Sign) != 0) {
+                if ((requestedServiceId & ServiceIds.ConsumerBin) == 0)
+                    {
+                        throw new CommunicatorException("ConsumerID BIN attribute should be present.");
+                    }
+				
 			} else if (requestedServiceId != ServiceIds.Sign) {
-				throw new CommunicatorException("DocumentID should not be filled if the Sign service is not requested");
+				throw new CommunicatorException("DocumentID should not be filled if the Sign service is not requested.");
 			}
 		} else {
 			if (requestedServiceId == ServiceIds.Sign || (requestedServiceId & ServiceIds.Sign) != 0) {
-				throw new CommunicatorException("DocumentID should be present");
+				throw new CommunicatorException("DocumentID should be present.");
 			}
 		}
 	}
