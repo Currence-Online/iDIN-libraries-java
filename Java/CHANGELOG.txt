@@ -1,4 +1,9 @@
 Release Notes BankId.Merchant.Library
+v 1.2.2
+Bugfixes
+# 111358 COT-218: [Java] Fix XML empty issue 
+# 115477 COT-281: [Java] Verify if iDIN Java Libraries support Springboot
+# 110738 COT-224: [Java] Integrate with the iDIN Java Library via a proxy
 
 v 1.2.1
 Bugfixes
