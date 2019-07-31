@@ -69,7 +69,9 @@ class iDxMessageBuilder {
         
         Validator.validate(trxReq);
         
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        Document doc = factory.newDocumentBuilder().parse(new ByteArrayInputStream(
             Utils.serialize(trxReq, schemas.idx.AcquirerTrxReq.class).getBytes())
         );
         Node node = doc.importNode(containedData, true);

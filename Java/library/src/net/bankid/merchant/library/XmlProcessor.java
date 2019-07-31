@@ -239,7 +239,7 @@ class XmlProcessor {
     }
     
     private boolean CheckIdxSignature(Configuration config, Document doc, Element signature) throws MarshalException, XMLSignatureException, IOException {
-        XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
+        XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM", new org.jcp.xml.dsig.internal.dom.XMLDSigRI());
         try
         {
             if(CheckIdxSignature(config, config.getAcquirerCertificateAlias(), doc, signature, fac))
