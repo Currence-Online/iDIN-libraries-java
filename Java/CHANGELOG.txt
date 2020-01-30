@@ -1,4 +1,7 @@
 Release Notes BankId.Merchant.Library
+v 1.2.3
+# 124248 COT-450: [Java] Fix project compilation for iDIN Java Libraries
+
 v 1.2.2
 Bugfixes
 # 111358 COT-218: [Java] Fix XML empty issue 
