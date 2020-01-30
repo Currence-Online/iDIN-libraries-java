@@ -57,9 +57,7 @@ class BankIdMessageBuilder {
         Validator.validate(authnReq);
         
         String s = Utils.serialize(authnReq, AuthnRequestType.class);
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
-        Document doc = factory.newDocumentBuilder().parse(new ByteArrayInputStream(s.getBytes()));
+        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(s.getBytes()));
         
         return doc.getDocumentElement();
     }

@@ -1,6 +1,5 @@
 package net.bankid.merchant.library;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -39,11 +38,6 @@ public class Configuration {
     private String serviceLogsLocation;
     private String serviceLogsPattern;
     private ILoggerFactory loggerFactory;
-    
-    private String proxyHost;
-	private int proxyPort;
-	private String proxyAuthorizationType;
-	private String proxyAuthorizationCredentials;
     
     private IMessenger messenger;
 
@@ -242,18 +236,12 @@ public class Configuration {
         setServiceLogsPattern(getConfigValue(doc, "BankId.ServiceLogs.Pattern"));
         setTls12Enabled(Boolean.parseBoolean(getConfigValue(doc, "BankId.TLS12.Enabled")));
         setLoggerFactory(new LoggerFactory());
-        setProxyHost(getConfigValue(doc, "BankId.Proxy.Host"));
-        
-		String proxyPortString = getConfigValue(doc, "BankId.Proxy.Port");
-		if (proxyPortString != null && !proxyPortString.trim().isEmpty()) {
-			setProxyPort(Integer.parseInt(proxyPortString));
-		}
 
         URL url = ClassLoader.getSystemClassLoader().getResource(getKeyStoreLocation());
         if (url == null) {
             url = Configuration.class.getClassLoader().getResource(getKeyStoreLocation());
         }
-        keyStore =  new BufferedInputStream(url.openStream());
+        keyStore = url.openStream();
         getKeyStore().mark(Integer.MAX_VALUE);
     }
     
@@ -287,14 +275,12 @@ public class Configuration {
         setServiceLogsLocation(values.getServiceLogsLocation());
         setServiceLogsPattern(values.getServiceLogsPattern());
         setLoggerFactory(values.getLoggerFactory());
-        setProxyHost(values.getProxyHost());
-        setProxyPort(values.getProxyPort());
         
         URL url = ClassLoader.getSystemClassLoader().getResource(getKeyStoreLocation());
         if (url == null) {
             url = Configuration.class.getClassLoader().getResource(getKeyStoreLocation());
         }
-        keyStore = new BufferedInputStream(url.openStream());
+        keyStore = url.openStream();
         getKeyStore().mark(Integer.MAX_VALUE);
     }
 
@@ -518,36 +504,6 @@ public class Configuration {
         this.serviceLogsLocation = serviceLogsLocation;
     }
     /**
-     * 
-     * @param proxyHost A host name that the library will use to connect via Proxy
-     */
-    public void setProxyHost(String proxyHost) {
-    	this.proxyHost = proxyHost;
-    }
-    /**
-     * 
-     * @return The host name that the library uses for proxy connections
-     */
-    public String getProxyHost() {
-		return proxyHost;
-	}
-
-    /**
-     * 
-     * @return The port that the library uses for proxy connections
-     */
-	public int getProxyPort() {
-		return proxyPort;
-	}
-
-    /**
-     * 
-     * @param proxyPort A port number that the library will use to connect via Proxy
-     */
-    public void setProxyPort(int proxyPort) {
-    	this.proxyPort = proxyPort;
-    }
-    /**
      * @return A string that describes a pattern to distinguish the ISO pain raw messages.
      * For example, %Y-%M-%D\%h%m%s.%f-%a.xml -> 102045.924-AcquirerTrxReq.xml
      * Other remarks:
@@ -638,38 +594,6 @@ public class Configuration {
     public boolean isTls12Enabled() {
         return tls12Enabled;
     }
-    
-	/**
-	 * 
-	 * @return the authorization type that the library uses for the proxy connections
-	 */
-	public String getProxyAuthorizationType() {
-		return proxyAuthorizationType;
-	}
-
-	/**
-	 * 
-	 * @param proxyAuthorizationType the authorization type that the library will use to connect via proxy
-	 */
-	public void setProxyAuthorizationType(String proxyAuthorizationType) {
-		this.proxyAuthorizationType = proxyAuthorizationType;
-	}
-
-	/**
-	 * 
-	 * @return the authorization credentials that the library uses for proxy connections
-	 */
-	public String getProxyAuthorizationCredentials() {
-		return proxyAuthorizationCredentials;
-	}
-
-	/**
-	 * 
-	 * @param proxyAuthorizationCredentials the authorization credentials to that the library will use to connect via proxy
-	 */
-	public void setProxyAuthorizationCredentials(String proxyAuthorizationCredentials) {
-		this.proxyAuthorizationCredentials = proxyAuthorizationCredentials;
-	}
 
     /**
      * @return the messenger to use when sending requests
