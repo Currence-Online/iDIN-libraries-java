@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
@@ -22,6 +23,7 @@ import schemas.saml.protocol.AuthnRequestType;
 import schemas.saml.protocol.ConditionsType;
 import schemas.saml.protocol.ExtensionsType;
 import schemas.saml.protocol.NameIDType;
+import schemas.saml.protocol.ObjectFactory;
 import schemas.saml.protocol.RequestedAuthnContextType;
 import schemas.saml.protocol.ScopingType;
 
@@ -55,8 +57,8 @@ class BankIdMessageBuilder {
         }};
         
         Validator.validate(authnReq);
-        
-        String s = Utils.serialize(authnReq, AuthnRequestType.class);
+        JAXBElement<AuthnRequestType> jaxbElementAuthReq = new ObjectFactory().createAuthnRequest(authnReq);
+        String s = Utils.serialize(jaxbElementAuthReq, AuthnRequestType.class);
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(s.getBytes()));
         
         return doc.getDocumentElement();
