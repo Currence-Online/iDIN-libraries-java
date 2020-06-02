@@ -1,4 +1,7 @@
 Release Notes BankId.Merchant.Library
+v 1.2.4
+# 127613: COT-515: [Java] Fix Merchant Library Compilation & Runtime issues on JDK 9 and above versions
+
 v 1.2.3
 # 124248 COT-450: [Java] Fix project compilation for iDIN Java Libraries
 

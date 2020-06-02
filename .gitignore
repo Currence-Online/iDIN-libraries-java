@@ -13,6 +13,7 @@ info-log.txt
 /Server/packages
 /.NET/build
 /build
+**/.vs
 
 # java ignores
 /Java/website/nbproject/private/
@@ -53,11 +54,4 @@ Server/.vs/**
 PHP/library.test/composer.lock
 PHP/library.test/vendor/
 PHP/website/ServiceLogs/
-
-
-#vscode
-.vscode/*
-
-#eclipse
-.project
-.classpath
+.vscode/launch.json
