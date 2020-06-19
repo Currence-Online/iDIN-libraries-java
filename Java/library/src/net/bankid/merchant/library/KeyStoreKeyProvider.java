@@ -16,7 +16,7 @@ public class KeyStoreKeyProvider implements IKeyProvider {
     }
 
     @Override
-    public ISigningKeyPair getSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException {
+    public ISigningKeyPair getMerchantSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException {
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
         InputStream is = config.getKeyStore();
         is.reset();

@@ -1,8 +1,6 @@
 package net.bankid.merchant.library;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.security.KeyStore;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.List;
@@ -169,7 +167,7 @@ public class SamlResponse extends AcceptanceReportBase {
     }
     
     private byte[] decryptKey(Configuration config, EncryptedKeyType encryptedKey) throws Exception {
-        ISigningKeyPair keyEntry = config.getKeyProvider().getSigningKeyPair();
+        ISigningKeyPair keyEntry = config.getKeyProvider().getMerchantSigningKeyPair();
         X509Certificate cert = (X509Certificate) keyEntry.getCertificate();
 
         byte[] bytes = encryptedKey.getCipherData().getCipherValue();
