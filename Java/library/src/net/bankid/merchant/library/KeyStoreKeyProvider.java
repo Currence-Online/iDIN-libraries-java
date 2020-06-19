@@ -28,4 +28,13 @@ public class KeyStoreKeyProvider implements IKeyProvider {
         logger.Log(config, "found key entry");
         return new ISigningKeyPair(keyEntry.getPrivateKey(), (X509Certificate) keyEntry.getCertificate());
     }
+
+    @Override
+    public X509Certificate getAcquirerCertificate(String acquirerCertificateAlias) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
+        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+        InputStream is = config.getKeyStore();
+        is.reset();
+        ks.load(is, config.getKeyStorePassword().toCharArray());
+        return (X509Certificate) ks.getCertificate(acquirerCertificateAlias);
+    }
 }

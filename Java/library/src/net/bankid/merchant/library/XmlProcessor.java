@@ -2,10 +2,8 @@ package net.bankid.merchant.library;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.Key;
-import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -328,12 +326,8 @@ class XmlProcessor {
                 }
                 KeyName kn = (KeyName) ki;
                 String thumbprint = kn.getName();
-                
-                KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-                InputStream is = config.getKeyStore();
-                is.reset();
-                ks.load(is, config.getKeyStorePassword().toCharArray());
-                X509Certificate cert = (X509Certificate) ks.getCertificate(acquirerCertificateAlias);
+
+                X509Certificate cert = config.getKeyProvider().getAcquirerCertificate(acquirerCertificateAlias);
                 final PublicKey pk = cert.getPublicKey();
                 
                 logger.Log(config, "checking iDx signature with certificate:");
