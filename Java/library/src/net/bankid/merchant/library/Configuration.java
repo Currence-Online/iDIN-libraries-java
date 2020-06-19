@@ -41,6 +41,8 @@ public class Configuration {
     
     private IMessenger messenger;
 
+    private IKeyProvider keyProvider;
+
     private boolean tls12Enabled;
     
     private static Configuration instance;
@@ -58,6 +60,7 @@ public class Configuration {
     }
     
     public Configuration() {
+        keyProvider = new KeyStoreKeyProvider(this);
     }
     
     /**
@@ -101,6 +104,7 @@ public class Configuration {
         this.serviceLogsLocation = serviceLogsLocation;
         this.serviceLogsPattern = serviceLogsPattern;
         this.loggerFactory = loggerFactory != null? loggerFactory : new LoggerFactory();
+        this.keyProvider = new KeyStoreKeyProvider(this);
     }
     
     /**
@@ -146,6 +150,7 @@ public class Configuration {
         this.serviceLogsLocation = serviceLogsLocation;
         this.serviceLogsPattern = serviceLogsPattern;
         this.loggerFactory = loggerFactory != null? loggerFactory : new LoggerFactory();
+        this.keyProvider = new KeyStoreKeyProvider(this);
     }
     
     /**
@@ -188,6 +193,7 @@ public class Configuration {
         this.serviceLogsLocation = serviceLogsLocation;
         this.serviceLogsPattern = serviceLogsPattern;
         this.loggerFactory = loggerFactory != null? loggerFactory : new LoggerFactory();
+        this.keyProvider = new KeyStoreKeyProvider(this);
     }
     
     private String getConfigValue(Document doc, String key)
@@ -603,5 +609,9 @@ public class Configuration {
             messenger = new Messenger(this);
         
         return messenger;
+    }
+
+    public IKeyProvider getKeyProvider() {
+        return keyProvider;
     }
 }

@@ -69,15 +69,7 @@ class XmlProcessor {
                    SAXException, XMLSignatureException,
                    TransformerException {
         logger.Log(config, "adding signature...");
-        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-        InputStream is = config.getKeyStore();
-        is.reset();
-        ks.load(is, config.getKeyStorePassword().toCharArray());
-        logger.Log(config, "loaded key store");
-        KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry)
-            ks.getEntry(config.getMerchantCertificateAlias(),
-                new KeyStore.PasswordProtection(config.getMerchantCertificatePassword().toCharArray()));
-        logger.Log(config, "found key entry");
+        ISigningKeyPair keyEntry = config.getKeyProvider().getSigningKeyPair();
         X509Certificate cert = (X509Certificate) keyEntry.getCertificate();
 
         XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
