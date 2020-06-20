@@ -17,11 +17,7 @@ public class KeyStoreKeyProvider implements IKeyProvider {
 
     @Override
     public ISigningKeyPair getMerchantSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException {
-        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-        InputStream is = config.getKeyStore();
-        is.reset();
-        ks.load(is, config.getKeyStorePassword().toCharArray());
-        logger.Log(config, "loaded key store");
+        KeyStore ks = getKeyStore();
         KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry)
                 ks.getEntry(config.getMerchantCertificateAlias(),
                         new KeyStore.PasswordProtection(config.getMerchantCertificatePassword().toCharArray()));
@@ -31,10 +27,16 @@ public class KeyStoreKeyProvider implements IKeyProvider {
 
     @Override
     public X509Certificate getAcquirerCertificate(String acquirerCertificateAlias) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
+        KeyStore ks = getKeyStore();
+        return (X509Certificate) ks.getCertificate(acquirerCertificateAlias);
+    }
+
+    private KeyStore getKeyStore() throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException {
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
         InputStream is = config.getKeyStore();
         is.reset();
         ks.load(is, config.getKeyStorePassword().toCharArray());
-        return (X509Certificate) ks.getCertificate(acquirerCertificateAlias);
+        logger.Log(config, "loaded key store");
+        return ks;
     }
 }
