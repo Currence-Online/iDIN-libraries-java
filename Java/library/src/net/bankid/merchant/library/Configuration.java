@@ -60,7 +60,6 @@ public class Configuration {
     }
     
     public Configuration() {
-        keyProvider = new KeyStoreKeyProvider(this);
     }
     
     /**
