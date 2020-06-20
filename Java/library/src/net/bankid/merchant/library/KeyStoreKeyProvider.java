@@ -1,42 +1,79 @@
 package net.bankid.merchant.library;
 
+import org.w3c.dom.Document;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.security.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 public class KeyStoreKeyProvider implements IKeyProvider {
+    private InputStream keyStore;
     private Configuration config;
     private ILogger logger;
 
     public KeyStoreKeyProvider(Configuration config) {
         this.config = config;
-        this.logger = config.getLoggerFactory().create();
     }
 
     @Override
     public ISigningKeyPair getMerchantSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException {
-        KeyStore ks = getKeyStore();
+        KeyStore ks = getJavaKeyStore();
         KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry)
                 ks.getEntry(config.getMerchantCertificateAlias(),
                         new KeyStore.PasswordProtection(config.getMerchantCertificatePassword().toCharArray()));
-        logger.Log(config, "found key entry");
+        getLogger().Log(config, "found key entry");
         return new ISigningKeyPair(keyEntry.getPrivateKey(), (X509Certificate) keyEntry.getCertificate());
     }
 
     @Override
     public X509Certificate getAcquirerCertificate(String acquirerCertificateAlias) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException {
-        KeyStore ks = getKeyStore();
+        KeyStore ks = getJavaKeyStore();
         return (X509Certificate) ks.getCertificate(acquirerCertificateAlias);
     }
 
-    private KeyStore getKeyStore() throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException {
+    @Override
+    public void Load(Document doc) throws IOException {
+        openKeyStoreInputStream();
+
+    }
+
+    @Override
+    public void Setup(IKeyProvider values) throws IOException {
+        openKeyStoreInputStream();
+    }
+
+    /**
+     * @return the keyStore
+     */
+    InputStream getKeyStore() {
+        return keyStore;
+    }
+
+    private void openKeyStoreInputStream() throws IOException {
+        URL url = ClassLoader.getSystemClassLoader().getResource(config.getKeyStoreLocation());
+        if (url == null) {
+            url = Configuration.class.getClassLoader().getResource(config.getKeyStoreLocation());
+        }
+        keyStore = url.openStream();
+        getKeyStore().mark(Integer.MAX_VALUE);
+    }
+
+    private KeyStore getJavaKeyStore() throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException {
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-        InputStream is = config.getKeyStore();
+        InputStream is = getKeyStore();
         is.reset();
         ks.load(is, config.getKeyStorePassword().toCharArray());
-        logger.Log(config, "loaded key store");
+        getLogger().Log(config, "loaded key store");
         return ks;
+    }
+
+    private ILogger getLogger() {
+        if (logger == null) {
+            logger = config.getLoggerFactory().create();
+        }
+        return logger;
     }
 }

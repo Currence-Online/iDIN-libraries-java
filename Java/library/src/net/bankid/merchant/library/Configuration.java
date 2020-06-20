@@ -23,7 +23,6 @@ public class Configuration {
     private String acquirerStatusURL;
    
     private String keyStoreLocation;
-    private InputStream keyStore;
     private String keyStorePassword;
    
     private String merchantCertificateAlias;
@@ -41,6 +40,7 @@ public class Configuration {
     
     private IMessenger messenger;
 
+    private IKeyProviderFactory keyProviderFactory;
     private IKeyProvider keyProvider;
 
     private boolean tls12Enabled;
@@ -104,7 +104,8 @@ public class Configuration {
         this.serviceLogsLocation = serviceLogsLocation;
         this.serviceLogsPattern = serviceLogsPattern;
         this.loggerFactory = loggerFactory != null? loggerFactory : new LoggerFactory();
-        this.keyProvider = new KeyStoreKeyProvider(this);
+        this.keyProviderFactory = new KeyStoreKeyProviderFactory();
+        this.keyProvider = keyProviderFactory.create(this);
     }
     
     /**
@@ -150,9 +151,10 @@ public class Configuration {
         this.serviceLogsLocation = serviceLogsLocation;
         this.serviceLogsPattern = serviceLogsPattern;
         this.loggerFactory = loggerFactory != null? loggerFactory : new LoggerFactory();
-        this.keyProvider = new KeyStoreKeyProvider(this);
+        this.keyProviderFactory = new KeyStoreKeyProviderFactory();
+        this.keyProvider = keyProviderFactory.create(this);
     }
-    
+
     /**
      * Constructor that highlights all required fields for this object.
      * @param merchantID ID of the Merchant
@@ -193,9 +195,49 @@ public class Configuration {
         this.serviceLogsLocation = serviceLogsLocation;
         this.serviceLogsPattern = serviceLogsPattern;
         this.loggerFactory = loggerFactory != null? loggerFactory : new LoggerFactory();
-        this.keyProvider = new KeyStoreKeyProvider(this);
+        this.keyProviderFactory = new KeyStoreKeyProviderFactory();
+        this.keyProvider = keyProviderFactory.create(this);
     }
-    
+
+    /**
+     * Constructor that highlights all required fields for this object.
+     * @param merchantID ID of the Merchant
+     * @param merchantSubID The SubID that uniquely defines a trade name of the Merchant to be used for display
+     * @param merchantReturnUrl A valid URL to which the user is redirected, after the transaction has been authorized.
+     * @param acquirerCertificateAlias A string which specifies the alias of the acquirer certificate
+     * @param acquirerAlternateCertificateAlias A string which specifies the alias of the acquirer alternate certificate
+     * @param acquirerUrl_DirectoryReq The URL to which the library sends Directory request messages
+     * @param acquirerUrl_TransactionReq The URL to which the library sends Transaction messages.
+     * @param acquirerUrl_StatusReq The URL to which the library sends Status messages.
+     * @param logsEnabled This tells the library that it should output debug logging messages.
+     * @param tls12Enabled This tells the library that should use tls 1.2.
+     * @param serviceLogsEnabled This tells the library that it should save ISO pain raw messages or not. Default is true.
+     * @param serviceLogsLocation A directory on the disk where the library saves ISO pain raw messages.
+     * @param serviceLogsPattern A string that describes a pattern to distinguish the ISO pain raw messages.
+     * @param loggerFactory ILoggerFactory instance that is used to create ILogger object.
+     * @param keyProviderFactory IKeyProviderFactory instance that is used to create an IKeyProvider.
+     */
+    public Configuration(String merchantID, int merchantSubID, String merchantReturnUrl, String acquirerCertificateAlias,String acquirerAlternateCertificateAlias,
+                         String acquirerUrl_DirectoryReq, String acquirerUrl_TransactionReq, String acquirerUrl_StatusReq, boolean logsEnabled, boolean serviceLogsEnabled,
+                         String serviceLogsLocation, String serviceLogsPattern, boolean tls12Enabled, ILoggerFactory loggerFactory, IKeyProviderFactory keyProviderFactory) {
+        this.merchantID = merchantID;
+        this.merchantSubID = merchantSubID;
+        this.merchantReturnUrl = merchantReturnUrl;
+        this.acquirerCertificateAlias = acquirerCertificateAlias;
+        this.acquirerAlternateCertificateAlias = acquirerAlternateCertificateAlias;
+        this.acquirerDirectoryURL = acquirerUrl_DirectoryReq;
+        this.acquirerTransactionURL = acquirerUrl_TransactionReq;
+        this.acquirerStatusURL = acquirerUrl_StatusReq;
+        this.logsEnabled = logsEnabled;
+        this.tls12Enabled = tls12Enabled;
+        this.serviceLogsEnabled = serviceLogsEnabled;
+        this.serviceLogsLocation = serviceLogsLocation;
+        this.serviceLogsPattern = serviceLogsPattern;
+        this.loggerFactory = loggerFactory != null? loggerFactory : new LoggerFactory();
+        this.keyProviderFactory = keyProviderFactory;
+        this.keyProvider = keyProviderFactory.create(this);
+    }
+
     private String getConfigValue(Document doc, String key)
     {
         NodeList nl = doc.getElementsByTagName("add");
@@ -243,12 +285,18 @@ public class Configuration {
         setTls12Enabled(Boolean.parseBoolean(getConfigValue(doc, "BankId.TLS12.Enabled")));
         setLoggerFactory(new LoggerFactory());
 
-        URL url = ClassLoader.getSystemClassLoader().getResource(getKeyStoreLocation());
-        if (url == null) {
-            url = Configuration.class.getClassLoader().getResource(getKeyStoreLocation());
+        String keyProviderFactoryClassName = getConfigValue(doc, "BankId.KeyProviderFactoryClass");
+        if (keyProviderFactoryClassName != null) {
+            try {
+                setKeyProviderFactory((IKeyProviderFactory) Class.forName(keyProviderFactoryClassName).newInstance());
+            } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+                throw new IllegalArgumentException("Could not construct IKeyProviderFactory", e);
+            }
+        } else {
+            setKeyProviderFactory(new KeyStoreKeyProviderFactory());
         }
-        keyStore = url.openStream();
-        getKeyStore().mark(Integer.MAX_VALUE);
+        setKeyProvider(getKeyProviderFactory().create(this));
+        getKeyProvider().Load(doc);
     }
     
     /**
@@ -281,13 +329,12 @@ public class Configuration {
         setServiceLogsLocation(values.getServiceLogsLocation());
         setServiceLogsPattern(values.getServiceLogsPattern());
         setLoggerFactory(values.getLoggerFactory());
-        
-        URL url = ClassLoader.getSystemClassLoader().getResource(getKeyStoreLocation());
-        if (url == null) {
-            url = Configuration.class.getClassLoader().getResource(getKeyStoreLocation());
+
+        setKeyProviderFactory(values.getKeyProviderFactory());
+        if (!getKeyProvider().getClass().equals(values.getKeyProvider().getClass())) {
+            setKeyProvider(getKeyProviderFactory().create(this));
         }
-        keyStore = url.openStream();
-        getKeyStore().mark(Integer.MAX_VALUE);
+        getKeyProvider().Setup(values.getKeyProvider());
     }
 
     /**
@@ -465,7 +512,11 @@ public class Configuration {
      * @return the keyStore
      */
     InputStream getKeyStore() {
-        return keyStore;
+        if (getKeyProvider() instanceof KeyStoreKeyProvider) {
+            KeyStoreKeyProvider keyStoreKeyProvider = (KeyStoreKeyProvider) getKeyProvider();
+            return keyStoreKeyProvider.getKeyStore();
+        }
+        return null;
     }
     
     /**
@@ -613,5 +664,17 @@ public class Configuration {
 
     public IKeyProvider getKeyProvider() {
         return keyProvider;
+    }
+
+    public void setKeyProvider(IKeyProvider keyProvider) {
+        this.keyProvider = keyProvider;
+    }
+
+    public IKeyProviderFactory getKeyProviderFactory() {
+        return keyProviderFactory;
+    }
+
+    public void setKeyProviderFactory(IKeyProviderFactory keyProviderFactory) {
+        this.keyProviderFactory = keyProviderFactory;
     }
 }
