@@ -10,6 +10,7 @@
     <add key="BankId.Acquirer.TransactionUrl" value="" />
     <add key="BankId.Acquirer.StatusUrl" value="" />
 
+    <add key="BankId.KeyProviderFactoryClass" value="net.bankid.merchant.library.KeyStoreKeyProviderFactory" />
     <add key="BankId.KeyStore.Location" value="your-certs-here.jks" />
     <add key="BankId.KeyStore.Password" value="" />
 
