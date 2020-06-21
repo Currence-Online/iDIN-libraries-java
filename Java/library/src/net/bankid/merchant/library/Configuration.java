@@ -664,7 +664,7 @@ public class Configuration {
         return keyProvider;
     }
 
-    public void setKeyProvider(IKeyProvider keyProvider) {
+    private void setKeyProvider(IKeyProvider keyProvider) {
         this.keyProvider = keyProvider;
     }
 
@@ -672,7 +672,7 @@ public class Configuration {
         return keyProviderFactory;
     }
 
-    public void setKeyProviderFactory(IKeyProviderFactory keyProviderFactory) {
+    private void setKeyProviderFactory(IKeyProviderFactory keyProviderFactory) {
         this.keyProviderFactory = keyProviderFactory;
     }
 }
