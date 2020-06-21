@@ -12,7 +12,9 @@ import java.security.cert.X509Certificate;
 /**
  * Provide merchant and acquirer keys from a {@link KeyStore}.
  * This is the default {@link IKeyProvider} implementation, it reads the keystore details from the {@link Configuration}
- * object.
+ * object. After construction, this object MUST be activated by calling either {@link #Load(Document)} or
+ * {@link #Setup(IKeyProvider)}, these are invoked by respectively {@link Configuration#Load(InputStream)} and
+ * {@link Configuration#Setup(Configuration)}.
  */
 public class KeyStoreKeyProvider implements IKeyProvider {
     /**
