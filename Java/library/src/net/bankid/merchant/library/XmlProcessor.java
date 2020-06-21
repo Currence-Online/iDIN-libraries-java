@@ -67,7 +67,7 @@ class XmlProcessor {
                    SAXException, XMLSignatureException,
                    TransformerException {
         logger.Log(config, "adding signature...");
-        ISigningKeyPair keyEntry = config.getKeyProvider().getMerchantSigningKeyPair();
+        SigningKeyPair keyEntry = config.getKeyProvider().getMerchantSigningKeyPair();
         X509Certificate cert = (X509Certificate) keyEntry.getCertificate();
 
         XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");

@@ -19,13 +19,13 @@ public class KeyStoreKeyProvider implements IKeyProvider {
     }
 
     @Override
-    public ISigningKeyPair getMerchantSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException {
+    public SigningKeyPair getMerchantSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException {
         KeyStore ks = getJavaKeyStore();
         KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry)
                 ks.getEntry(config.getMerchantCertificateAlias(),
                         new KeyStore.PasswordProtection(config.getMerchantCertificatePassword().toCharArray()));
         getLogger().Log(config, "found key entry");
-        return new ISigningKeyPair(keyEntry.getPrivateKey(), (X509Certificate) keyEntry.getCertificate());
+        return new SigningKeyPair(keyEntry.getPrivateKey(), (X509Certificate) keyEntry.getCertificate());
     }
 
     @Override
