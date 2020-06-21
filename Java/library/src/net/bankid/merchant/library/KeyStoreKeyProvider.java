@@ -15,8 +15,17 @@ import java.security.cert.X509Certificate;
  * object.
  */
 public class KeyStoreKeyProvider implements IKeyProvider {
+    /**
+     * Lazily initialized by either {@link #Load(Document)} or {@link #Setup(IKeyProvider)}
+     */
     private InputStream keyStore;
-    private Configuration config;
+    /**
+     * The configuration object.
+     */
+    private final Configuration config;
+    /**
+     * Lazily initialized by {@link #getLogger()}
+     */
     private ILogger logger;
 
     public KeyStoreKeyProvider(Configuration config) {
