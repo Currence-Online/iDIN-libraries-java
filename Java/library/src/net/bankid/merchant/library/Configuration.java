@@ -660,18 +660,38 @@ public class Configuration {
         return messenger;
     }
 
+    /**
+     * @return the key provider to use for cryptographic operations
+     */
     public IKeyProvider getKeyProvider() {
         return keyProvider;
     }
 
+    /**
+     * Set the key provider to use for cryptographic operations.
+     * Make sure that the key provider is fully initialized, or initialize it by calling either
+     * {@link Configuration#Setup(Configuration)} or {@link Configuration#Load(InputStream)}.
+     * @param keyProvider the key provider to use for cryptographic operations
+     */
     private void setKeyProvider(IKeyProvider keyProvider) {
         this.keyProvider = keyProvider;
     }
 
+    /**
+     * @return the factory to use for creating a key provider
+     */
     public IKeyProviderFactory getKeyProviderFactory() {
         return keyProviderFactory;
     }
 
+    /**
+     * Set the factory to use to create a key provider.
+     * After setting the key provider factory, one should construct and set the key provider.
+     * <pre>
+     *     config.setKeyProvider(config.getKeyProviderFactory().create(config));
+     * </pre>
+     * @param keyProviderFactory the factory to use to create a key provider
+     */
     private void setKeyProviderFactory(IKeyProviderFactory keyProviderFactory) {
         this.keyProviderFactory = keyProviderFactory;
     }
