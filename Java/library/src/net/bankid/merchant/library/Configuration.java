@@ -2,7 +2,6 @@ package net.bankid.merchant.library;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
@@ -330,7 +329,7 @@ public class Configuration {
         setLoggerFactory(values.getLoggerFactory());
 
         setKeyProviderFactory(values.getKeyProviderFactory());
-        if (!getKeyProvider().getClass().equals(values.getKeyProvider().getClass())) {
+        if (getKeyProvider() == null || !getKeyProvider().getClass().equals(values.getKeyProvider().getClass())) {
             setKeyProvider(getKeyProviderFactory().create(this));
         }
         getKeyProvider().Setup(values.getKeyProvider());

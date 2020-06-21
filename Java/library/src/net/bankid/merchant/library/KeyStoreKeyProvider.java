@@ -9,6 +9,11 @@ import java.security.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
+/**
+ * Provide merchant and acquirer keys from a {@link KeyStore}.
+ * This is the default {@link IKeyProvider} implementation, it reads the keystore details from the {@link Configuration}
+ * object.
+ */
 public class KeyStoreKeyProvider implements IKeyProvider {
     private InputStream keyStore;
     private Configuration config;
@@ -37,7 +42,6 @@ public class KeyStoreKeyProvider implements IKeyProvider {
     @Override
     public void Load(Document doc) throws IOException {
         openKeyStoreInputStream();
-
     }
 
     @Override
