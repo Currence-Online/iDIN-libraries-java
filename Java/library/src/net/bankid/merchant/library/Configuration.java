@@ -686,7 +686,7 @@ public class Configuration {
 
     /**
      * Set the factory to use to create a key provider.
-     * After setting the key provider factory, one should construct and set the key provider.
+     * After setting the key provider factory, remember to construct and set the key provider.
      * <pre>
      *     config.setKeyProvider(config.getKeyProviderFactory().create(config));
      * </pre>
