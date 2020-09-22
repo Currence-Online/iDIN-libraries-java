@@ -1,4 +1,9 @@
 Release Notes BankId.Merchant.Library
+
+v 1.2.5
+# 128248: COT-526: Add the library version in the logs
+# 122620: COT-429: [Java] Improve version control in GitHub for Java iDIN Software Libraries
+
 v 1.2.4
 # 127613: COT-515: [Java] Fix Merchant Library Compilation & Runtime issues on JDK 9 and above versions
 
