@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DirectoryRes xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" productID="NL:BVN:BankID:1.0" version="1.0.0">
+    <Acquirer>
+        <acquirerID>1234</acquirerID>
+    </Acquirer>
+    <Directory>
+        <directoryDateTimestamp>2013-12-31T23:00:00Z</directoryDateTimestamp>
+        <Country>
+            <countryNames>Nederland</countryNames>
+            <Issuer>
+                <issuerID>TESTNL20001</issuerID>
+                <issuerName>TEST NL 20001, status "Success"</issuerName>
+            </Issuer>
+        </Country>
+        <Country>
+            <countryNames>Romania</countryNames>
+            <Issuer>
+                <issuerID>TESTRO20001</issuerID>
+                <issuerName>TEST RO 20001, status "Success"</issuerName>
+            </Issuer>
+        </Country>
+        <Country>
+            <countryNames>Bulgaria</countryNames>
+            <Issuer>
+                <issuerID>TESTBG20001</issuerID>
+                <issuerName>TEST BG 20001, status "Success"</issuerName>
+            </Issuer>
+        </Country>
+    </Directory>
+</DirectoryRes>

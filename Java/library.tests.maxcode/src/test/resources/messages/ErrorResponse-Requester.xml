@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AcquirerErrorRes xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" productID="NL:BVN:BankID:1.0" version="1.0.0">
+  <createDateTimestamp>2015-06-29T05:46:24.786Z</createDateTimestamp>
+  <Error>
+    <errorCode>EC4200</errorCode>
+    <errorMessage>I am an error message</errorMessage>
+    <errorDetail>And I am an error detail</errorDetail>
+    <suggestedAction>And tell them to do what says here</suggestedAction>
+    <consumerMessage>You should display this message to consumers</consumerMessage>
+    <container>
+      <samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="RES-1234123456789012" InResponseTo="REF1234567890" Version="2.0" IssueInstant="2015-01-01T09:30:47Z">
+        <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">1234</saml:Issuer>
+        <samlp:Status>
+          <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Requester">
+            <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:RequestUnsupported" />
+          </samlp:StatusCode>
+          <samlp:StatusMessage>More details here about the field causing the error</samlp:StatusMessage>
+        </samlp:Status>
+      </samlp:Response>
+    </container>
+  </Error>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>NJ5wWMpFPvgXn43PYpnWd0yLGiECoCeuDGblUXRh0VU=</DigestValue></Reference></SignedInfo><SignatureValue>jTm2TljP0ypW8VB4xC5o+79Bog6T7es7sGcFKZIjq9m18opZ5INbt6Ffn0TbiXgsNcPmfxs3Tj3dF+wmdeAImLToTTUKM+0AHAvhD0qHTI25iMNKk2za9dTDyaqYlb+BmCZXJDB8wX+LmTWFfcaM5mHbtcJMt5gU3ky0nG72JEfT8dsn8gPsNmvDl4eYty93hevi4MaHFZQqW1jSXjqgvIzcFx4rR2f82CHcLSeMgD21MCgvnlvdZme7qV2875RjkceN25QLKuKMig23rU71c4feRhM+W70olVVTSwvNTtWZ+lj1pPjW4CAWaFRKW0f/CuhG7H5e18M4cmCabS+aCQ==</SignatureValue><KeyInfo><KeyName>037084CEE001B2F8F658D822EE5EA0A076A184E9</KeyName></KeyInfo></Signature></AcquirerErrorRes>

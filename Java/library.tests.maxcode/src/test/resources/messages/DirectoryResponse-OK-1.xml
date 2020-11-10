@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DirectoryRes xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" productID="NL:BVN:BankID:1.0" version="1.0.0">
+    <createDateTimestamp>2015-06-09T08:42:12.670Z</createDateTimestamp>
+    <Acquirer>
+        <acquirerID>1234</acquirerID>
+    </Acquirer>
+    <Directory>
+        <directoryDateTimestamp>2013-12-31T23:00:00Z</directoryDateTimestamp>
+        <Country>
+            <countryNames>Netherlands</countryNames>
+            <Issuer>
+                <issuerID>INGBNL2A</issuerID>
+                <issuerName>BANK A</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>INGBNL2B</issuerID>
+                <issuerName>BANK B</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>INGBNL2C</issuerID>
+                <issuerName>BANK C</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>INGBNL2D</issuerID>
+                <issuerName>BANK D</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>INGBNL2E</issuerID>
+                <issuerName>BANK E</issuerName>
+            </Issuer>
+        </Country>
+    </Directory>
+</DirectoryRes>

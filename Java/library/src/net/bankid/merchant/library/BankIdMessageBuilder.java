@@ -83,9 +83,11 @@ class BankIdMessageBuilder {
     private static Element getDocumentIdElement(String documentID) {
 		AttributeType documentIdAttribute = new AttributeType();
 		documentIdAttribute.setName(SamlAttribute.DocumentId);
-		documentIdAttribute.getAttributeValue().add(documentID);
+		documentIdAttribute.getAttributeValue()
+						   .add(documentID);
+		JAXBElement<AttributeType> attribute = new schemas.saml.assertion.ObjectFactory().createAttribute(documentIdAttribute);
 		try {
-			String xml = Utils.serialize(documentIdAttribute, AttributeType.class);
+			String xml = Utils.serialize(attribute, AttributeType.class);
 			return getXmlElement(xml);
 		} catch (CommunicatorException | JAXBException e) {
 			e.printStackTrace();

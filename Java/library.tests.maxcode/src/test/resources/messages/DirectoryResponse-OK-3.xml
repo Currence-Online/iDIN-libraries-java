@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectoryRes xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" productID="NL:BVN:BankID:1.0" version="1.0.0">
+  <createDateTimestamp>2015-06-09T08:42:12.670Z</createDateTimestamp>
+  <Acquirer>
+    <acquirerID>1234</acquirerID>
+  </Acquirer>
+  <Directory>
+    <directoryDateTimestamp>2013-12-31T23:00:00.000Z</directoryDateTimestamp>
+    <Country>
+      <countryNames>Netherlands</countryNames>
+      <Issuer>
+        <issuerID>INGBNL2A</issuerID>
+        <issuerName>NL BANK A</issuerName>
+      </Issuer>
+      <Issuer>
+        <issuerID>INGBNL2B</issuerID>
+        <issuerName>NL BANK B</issuerName>
+      </Issuer>
+    </Country>
+    <Country>
+      <countryNames>Romania</countryNames>
+      <Issuer>
+        <issuerID>INGBRO2A</issuerID>
+        <issuerName>RO BANK A</issuerName>
+      </Issuer>
+    </Country>
+  </Directory>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>rdsMVlfbKEj1Vk7GUEoN2UjcL8c+ZHaOYSBq8iLdM9M=</DigestValue></Reference></SignedInfo><SignatureValue>WujaRAPfTuWTrGzb+WS36J9qhP7u8GCv2hD+SkcR0Sk5ALz3h8ar1Zfx0mJYs0r4AcCMUTWb5ZevT7Yh2vHp9xmYAGpRsrJ/j+GDSHEFoLJEG1GJ1PHOERSQ8UHNDZhMpJLWrmIqnoi0o3DuBOgnW5hu9vGeQOQbCpAvtMiP4CIGxkP6d9w2+7ZfXaxPxnHh6N5vshSHnpid37p7KqEiBZcN5W6g5dGNPetfjqtlx15wp17sdXabpJFeTrbanSzTJ2uaaInG3kBzxeePh8A70TxgPhVr0+rVeJ5C7Vz1wkGUkbAYrwM5nD8ROV7F8n7Y/qv/aClc17+FdYZCn78bjQ==</SignatureValue><KeyInfo><KeyName>037084CEE001B2F8F658D822EE5EA0A076A184E9</KeyName></KeyInfo></Signature></DirectoryRes>

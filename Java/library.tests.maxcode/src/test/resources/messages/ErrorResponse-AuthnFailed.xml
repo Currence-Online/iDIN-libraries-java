@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AcquirerErrorRes xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" productID="NL:BVN:BankID:1.0" version="1.0.0">
+  <createDateTimestamp>2015-06-29T05:46:24.786Z</createDateTimestamp>
+  <Error>
+    <errorCode>EC4200</errorCode>
+    <errorMessage>I am an error message</errorMessage>
+    <errorDetail>And I am an error detail</errorDetail>
+    <consumerMessage>You should display this message to consumers</consumerMessage>
+    <suggestedAction>And tell them to do what says here</suggestedAction>
+
+    <container>
+      <samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="RES-1234123456789012" InResponseTo="REF1234567890" Version="2.0" IssueInstant="2015-01-01T09:30:47Z">
+        <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">1234</saml:Issuer>
+        <samlp:Status>
+          <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Requester">
+            <!--It can also be urn:oasis:names:tc:SAML:2.0:status:Responder-->
+            <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:AuthnFailed" />
+          </samlp:StatusCode>
+        </samlp:Status>
+      </samlp:Response>
+    </container>
+
+  </Error>
+</AcquirerErrorRes>

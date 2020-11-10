@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AcquirerStatusRes version="1.0.0" productID="NL:BVN:BankID:1.0" xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createDateTimestamp>2015-07-15T10:10:10.123Z</createDateTimestamp>
+    <Acquirer>
+        <acquirerID>4444</acquirerID>
+    </Acquirer>
+    <Transaction>
+        <transactionID>1234567890123457</transactionID>
+        <status>Success</status>
+        <statusDateTimestamp>2020-08-17T15:28:10.008Z</statusDateTimestamp>
+
+        <container>
+            <samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="RES-1234688689126722" InResponseTo="BANKID-1234688689126722" Version="2.0" IssueInstant="2015-07-15T10:10:10.123Z">
+                <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">BANKNL2U</saml:Issuer>
+                <samlp:Status>
+                    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success">
+                        <samlp:StatusCode Value="urn:nl:bvn:bankid:1.0:status:Success" />
+                    </samlp:StatusCode>
+                </samlp:Status>
+                <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" ID="ID1234895623145789159999" IssueInstant="2015-07-15T10:10:10.123Z">
+                    <saml:Issuer>BANKNL2U</saml:Issuer><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI="#ID1234895623145789159999"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>k3P/dpaNh92GtXYhYFpvlXkYSrWapq8+TZYu4YNCz/g=</DigestValue></Reference></SignedInfo><SignatureValue>oiIkSqpcctKiU2IEVFpM0gR6crl31NycapLA+7H2xhQdrc8dHzLgPT5pXnizsDETehTR80KmnNgtHBUetUA3t2J30zg+6qSWJM8d1ya9VR4NnyS8akjHeSYxoGxkIVQXtOSQtBLerBWybPY4YM618oXLzUJp+jiwR8SQARzXX5Y97gXXL8eMiLv2mJ8/06xLJvO3LBrNKh9YStyyxdtJKrrRW7v0rulGEnEd6/e9SbubzTey5VwQxU1RKeBR7k119CMalE8uN0vOwX/PMnuM2tjRx3XB8E6g/tVQiwFfISeBSq3HmE7CbL+BlcwfDe9Gz1eV8NaP1x9QwpW+ZQEqtg==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIECTCCAvGgAwIBAgIJAPcnWrHvHVhDMA0GCSqGSIb3DQEBCwUAMGAxCzAJBgNVBAYTAlJPMQswCQYDVQQIEwJJUzELMAkGA1UEBxMCSVMxEDAOBgNVBAoTB01heGNvZGUxDDAKBgNVBAsTA0RldjEXMBUGA1UEAxMOQmFua0lEIFFBIDIwMjAwHhcNMjAwNzE1MTIwOTQ0WhcNMjUwNzE0MTIwOTQ0WjBgMQswCQYDVQQGEwJSTzELMAkGA1UECBMCSVMxCzAJBgNVBAcTAklTMRAwDgYDVQQKEwdNYXhjb2RlMQwwCgYDVQQLEwNEZXYxFzAVBgNVBAMTDkJhbmtJRCBRQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0j7DxzAnPmTPSq3hoTV5qpiDkgjxxWE0Ehq+InB2pXg4QwJPwXXpT8zBy6jj4AcMaZFHoufNK8DVrSwqC6wvCfOS5qf4R46bjpxJlIWYBX+3snVSruiOyOk+Z2YZ+e8+ylBI9inXW3qGOHQhzNV0tPB752fQRZm3Z2uc2R9pZr8NTfEHy9dZe0iSo/XbQTNehatd19k4ZYnrnyGvsY86pL1INwQJFVCz58qijRiaE+JwnItcJd2ZKfc5nGPNvHkBkKJkZEeYXwsJL5JdTX3IkryxrPvNKUXXH4etlXaJPGSCj4/i77SIhBGKz6wF1qZpg0UEjTlMbzmMvtlEY/MMEwIDAQABo4HFMIHCMB0GA1UdDgQWBBSbJSveT1HX6xfmsYKFDa+XlBqNyTCBkgYDVR0jBIGKMIGHgBSbJSveT1HX6xfmsYKFDa+XlBqNyaFkpGIwYDELMAkGA1UEBhMCUk8xCzAJBgNVBAgTAklTMQswCQYDVQQHEwJJUzEQMA4GA1UEChMHTWF4Y29kZTEMMAoGA1UECxMDRGV2MRcwFQYDVQQDEw5CYW5rSUQgUUEgMjAyMIIJAPcnWrHvHVhDMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAFgeRtjg1wX9Vht8Pep5NNVYO/lAwNqzOhf4kqbw+oPF/26JzmiaRg/korw/hM5K6MmeOrhLHV1rUXMVG752bY1x6rE59GirLVINUxcaqDa/So8+wuGDswIrxM80WrWW0/rTsdgBoJYlg3ExbYxQx2QdYsdyoHbrmBLysAqcjPSpxMb8ja6a4FyrmJ/X7L19GMHhVXPh61M+ymsoqbSq4LnviImikqHVbySObOglY2je4JFvAsB45tiH/jFYrg2I60MhJ/HxWOGDe4M6Jls6oA+FF+90kBf1zVZlcmTCZ1VY86EUYBl3X2YXJRbQe7Zx7CmboRocBr4T42wBUaxi/1I=</X509Certificate></X509Data></KeyInfo></Signature>
+
+                    <saml:Subject>
+                        <EncryptedID xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>XGbw901M2IeKOekg55TPVJetGrQhjurai18FTwTwGpd9flas5/3pGSCPP/7VUvCH0n0iZdR93SvhJUcY3cbS/roHrVPCKiyMkhCusx0sYjKOoQNkgZqtyRMF8tYDdkrhr6BK0IS4DraJnKtwznM3wHfN29NqdeIoXzMpuK79VWBLaBZ6wl1QdR9SukEDjf6FbgcKut9mK6QQOIJ0INLCCh1mn5myJR+1BW3X7nv1Gq9OGghxrUcrCyyymtOCckEQ8fm/1xXJH1yQytjpzZJxgiLkqH7OBtQPL659qGDalMQ1z3MYkE7igP5YwKRtJKn7oui7NReNOieeIwdSqdXsOw==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>KSzpXmW94PsdKSLiROgI9U2ZhLlJc7Cnq+oNRM92rvluoSOIWIPcdjnbDFoUL2HQpy2tzP6sF+mWA8QHcjjU56h4EtOJUq+fN4EcKCAC66fRyNI4FdIvwTOOtDNd07IxLJ9bI3o5nmrKOgot363/mA==</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedID>
+                    </saml:Subject>
+                    <saml:Conditions NotBefore="2015-07-15T10:10:10.123Z" NotOnOrAfter="2015-07-15T10:10:10.123Z">
+                        <saml:AudienceRestriction>
+                            <saml:Audience>NL00ZZZ12345678</saml:Audience>
+                        </saml:AudienceRestriction>
+                        <saml:OneTimeUse />
+                    </saml:Conditions>
+                    <saml:AuthnStatement AuthnInstant="2015-07-15T10:10:10.123Z">
+                        <saml:AuthnContext>
+                            <saml:AuthnContextClassRef>nl:bvn:bankid:1.0:loa3</saml:AuthnContextClassRef>
+                            <saml:AuthenticatingAuthority>BANKNL2U</saml:AuthenticatingAuthority>
+                        </saml:AuthnContext>
+                    </saml:AuthnStatement>
+                    <saml:AttributeStatement><saml:Attribute Name="urn:nl:bvn:bankid:1.0:bankid.deliveredserviceid">
+                        <saml:AttributeValue>4160</saml:AttributeValue>
+                    </saml:Attribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>bNZBr0LkPaKvNclavPMd89Dnw739dzBZBpMFIs5iULQYVSOUqfSVdLyhuiLD1Bie/2qNUGclSNwL7A9IeAJ5zwMJyRE4NdiFUA1/0Qmtyi7KfbYlbenxky8QbXXQ1m6ioZI4gJXfPPMokzvTkv7HDlQu8tEYAYizDqkgHXJkS/9kwug1GRa/1mXu06Nj/BAB+O4CIU1wZjW+Sy1++3+5/XPjiM9dGpdGJXOiDO84BBWX93se7/R4Dv5IkFplbdbHJx1UpjKlxTtymocAnr8GUy6Q1/TDaWKvMnSl/K/mH7WrPy06ph8X4UmYOgBnX/vUKWuaLBubGXRUg7yDqJCEhw==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>bFwc/3fK/PxQYN/EJnpkaezSpnck5tsihgs03e6Fxyfd9UF2ojZBSMN7VQcUkijnfdjOOd0So7+yRZtw+OitF4n9koldT2r++rX7mLlhUM6tNyJiuND3/SK/xnBPoebPj7QTCDRu8lfI2knVI3b8vwWpoXA1u9khe28mnheW+HjSxDEr8/v3MUCQ+A6KqC49Xa85LINnpfzd2Xd974+dvllwHxrNChcyt2HUXL8ty997AhY5Hl/sXgiZi8QQT7V1el1np4zRBC03DVm+MIQxuw==</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>rEuwOYNEVB96ZY/leK/sf0UBGsW03SwbHM01kNJyCZ0o15QjQ/R0Q5jjM8rsH8WrvnqaXovWMduoLmLhHLqNu2tJgQCFW/WDdiGNeCJyw3lrXSVAikqgLWNlHo/5WTpfHalal50eZglkwc5hkeKuDGBsGt1DNkuwl7QQ4dqsU5fdmjAtz836j5AEpJE/UgOFyf3tYRtT/YoblWeXlRjVP9pghGMetUpf7yY0L1tDiH2vH4msbpDnbJzhaboO1YZZdMj6KVXy2bUpxTm5Kf/BkRjO0TSpNJ0qn73HzWVcv4aB3z2wgbzPSif9GApAryJc/DP1EbK1IHfl4n8T98ADng==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>UaJGBolntbexnrAN6LSGii8cjb4218P19IQUb6tVqdguojymFocmEd9V5JKilprI6UYvQu2G9reJiErw5uVUCAmTomIUjnvUDsGhv5230bZeV51h3clrblhuyVkNOBnIWw5NM7Kkmnx6SrP2OVB2DER8BEwvmYd8ZcyEqWXTRUYuL3pGgkXIPl9yRjKUULhgTAafe6HGwnn2w3mfUNWqQ657+S7/1sip/wwL0dh46G6qwMIncCOoD38/S7S6XKobRVY0g2sLaCWN1g5hrZa4uc+bYLMNqGvPSgIns9ypqoY=</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>P1yWvKmCHwO6/3PFrOzWyfYMrB1P1ld0A966Wa33S0g08MTYYw0JH1lraO2BOy7c60PL8gd/uUay2RGPs1HOGNcxaYO8bn3gfAMmjChzr4HlAgsGSSFory4vAQsLuxCXRSvFAd0VvS509wRBMR6ipcBhuoSK+Gc7i0Rsse2nQ49kXvwatKSoWPfyYOahvY5iAGDoElRnnN5fpZPc7WdqiX5p5dy1OKW010eL3Wx0XjJ5rL1datEaG0XkSA6C3D0iE185G8QmkH7SpKmj20QFb+z5S9XmCVjaGxZ+WPd7fmBIsiLrXGQPNRJrW4PbGbluyJibOh8ZAoQid4UMkgHMoA==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>LHjkz2Yx/wOnflcfem0/y1qv+Uu5PYlqiX3Ls9G3ymgSOI6dL4QmD3g/52Jsg0O+WvfYRBhcLeA5Cf/zOM2MorIuJsQIHzia/lXaKmoPpV9n8pAdkEwIyTsUCpO19Et0LtZjBmLr3cyDyogpcCThTeSN3F0wby7L9mN6ym32vDHlRaSNqd6EYtnlbeqK+uMGD02zAKk6uisfb9/fISOFX8JYF6XOvBvXVp+MGVEit1VG2+zd2Yu1KDxYk9ahrEvmOBxWxjlM4iAQs9XBAboWxrxR16Ole3AO+GCsjcr/RWY=</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>QZKEZ96OusjIAPuvT66OD+my9j//4ufrJK5k0qHApGpv3s6V1IGulB5PGC/VgV45KgXwVeRxtGaSYge5881YMZM29qwc+EOIAPNgKYDYS3Dn6R1fjcMiUwooFioAOekUwwTuMghvFZDqmSKK3Icd8/vOTRVkErxxLHOhRZZWe/Eo9jmy39lAb2HrD4DuKeWeAQKcZHFd99/SJvpvboPbOOiEOw319xxQaj4yqX07t0AH3hDL/+MgTiPXpdunUNcKhgkUVAVsdCe9sDm4OJETjKU6Nz4HoGjnzuUwKAkPLhsoN32YrIbLQY38WM8Y5klmW/3HwSN92N96Jg8Ooe5WBw==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>+sSxrlCoeBQCFngLD+Lvsv9MkoguoPGf8WAwVyBIznnO07LXYkVb75itmcSbOKDhouB9p0xtdfDMesFVhSdaEwhdHw0FfGCmMsKsWDXEYn3tamXsh/VgQiXDnEwDFjM34KNTD5Jc9SOW7prB1Zrnmwn9Rs/oYVdydL8v0+6dZqJdtk3NkMFALfwvLcxX1aD+8uwrClX/YeFHFPaXIXKXCSq+zVKrISSlHGxH55CmuKrkKtoq3rmRci7t8nJFRrqBz/LhunEG2JCEPXsgwvyBy3MLkmRmz/Nm2FSNNK0EsSw=</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>QMerqXLy6C+hDH3dXhFDz1zGirV66/q0vL4SjefXxZOV9+l1IbdWcHFGaGsJAVCPd6AMkWB7OBzTDeZpeas6tuw0vJjCSlpXxJD+3ioF9mZLVhEA4Dz7MRXcehVEEgMzPkp+1ns+ST+tCI8jrxfw5wmFU1rMumhvHnnDEOvEeTyAykQ7M8AjqzJwE7dDqR7DrL9Yw4SoLWpoxrdPU7XIigSCdodDRpGk41GMv9jBSkVut6XxAx8ciaSTijuIOHY4jq6y6+xcAJDvaX19v/TW0ZFZQwaL5sG3TuHmqVSF67r+IY7iQRi1n6JdFJjdfT3TfOVXIzgojokcSCauO+WMng==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>6qX8tx1cTI0GAyuMAJYSD/Qx1hFhQuzfoWJl+mpu3wwY4PLsuUxth78J/RuWNiCx8E+0FRJ8SNZ1aT0NF0r4SeO93WnItinkLZRdJG7Fx7rdplGj4x3B8rZmUoEL0fht8OjCpXIhxGsljdXhbS4c3DkTCEfs6Q017OQJpfMc9U+Ow5C5JXfFEboqbM6h7SBOiLesvQ5E4UCphBQHFmhfyqTqqMdqPD/oKf9ByjLsVnISQ0QTNyiW7tEsKeaKil1OVu8GzIA/GcEh9e6WemDjHofq+ysPmqj3iAvqXyMY874=</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>q4E5kZ/UsYBygKr0NN127FFYzVfOZDEGww8jrkv+gtt1Ar2hylC62mwGIWFimPcTTpDqukCzOXcKku42XJXe9sYNirFbMZNiPJ+JincmzDvFm5Ner6j3BqQ6JyGVYGGY69Eb1rhuVPIS9PMUhGFj5G7iQNhSrEM12ZcaCes7mPye7Pgmy63KOISOaNfixeg1PYyxD+Whb0c5V0cWn5izYvLsv9OErWuv59WlBFLXuBz7v/5Ep+AxqzGH9o5x/nqN8B7pv1h7uCT8QpNgD2tUNc64F0OKsJQydC/OSLwRUwvBnFUWm1Nbs4vqOvXeDLmuSHN/hHD20iiY/v2x4jURgw==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>Nj+S0gDGxjjhKxigj32U2I33KKrB6Q3xqEvZb5hmRYh1Rj0JOlPsCO3nqp1F8XcP41DiKMWkE+hPaZaiY9mpib/E14IW055uKYeYsTOOMuTK97xebB5/Uh1ovTip+hbvPcqt39JEcughGTXQ8al4WEsM9GJt9QL3duOj/Pv1Qsa9elkEWObbtnAgEnZhchz1ka3676wOAu5WYW+9JIfcoFGpOOXYHOvj6g3Ttrtmr/Ew4g3Koitcq9RmKew9cJ5wzdSUGxA2AJNk5Upke249zzk/zCZI2UNnSrPMMfNAhtk=</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>Suse/FDJCKPAPmgpG/OMQAmJtU3MQlew0fAySM6jXJCQDjrZSeVzLjbWAUM4Pf0z/1EvWZl/bdCX+emTSp1xyh/fPpsLO0/+s9eqvsCh5QLN2OuMBpBcgekUAjPRV4mqNCjm09Eo4TMrt524V6EPtZvn5iir3SqVGJb5lNvwgCvXL18zlNhGkRQY5eEJuzsVV5ZXUT0ALPAM3j0LMmy6+bykVcgBXeE7vqZwoBZ3hVZM0WoIGX1bJpfj75LjY2ycAOuYmh/jQsmeCjUCYwyGziEY6RNWvZEr93wpPxzixNk7yfX76UhKxoJqCEJDH4NSBiiLWRuRhGy1Vnam+TJRgg==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>s2LPcoLhCONG1PKHGElanbJEAptyP7Y+HiA+1Lr0U5VFw93NdPF/YvbmlIkL1WTvDNSMdf7cHARuy/6JgCsDLzNYHWw1Fo+KO7iWFTxMv6n4rInqvQiyGN7pS7SnkAHSyNUKA+D1O/001VfMl5COcqjNsSn7BjAITUHmdMmV1eKIsJ/jyNpbrwypW2eU9Ov5yLU/MVK1tkSimOW73/oTCA2hPuibqRz4ZJTVohL7UCSexPVK3YPyP0dabEKSGIqzn7aYGJhDc4EuV3d0llxxPds+aqPv8d08MLqJui+B3/0=</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                        <EncryptedAttribute xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+                            <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+                                <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                    <EncryptedKey Recipient="NL00ZZZ12345678" xmlns="http://www.w3.org/2001/04/xmlenc#">
+                                        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p">
+                                            <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" xmlns="http://www.w3.org/2000/09/xmldsig#" />
+                                        </EncryptionMethod>
+                                        <CipherData>
+                                            <CipherValue>eNj2i3XF9CsCJVJE3wG1t/BFULD6dR9A94rMUVHsK1q+1QxPAZkmxIzPBs+lXi8mFFkaQ/H1ipLG/ftqpTfVENY1caydKKuPvMTtdhPHuBe2IeAYAXGWYFPwUJpvL8a4xkCIQd7z6jc5MybBvtyjCi+N97cdnZ+gXP8k6Qm5ju9x75TmYKmq7ehJmMFIBHJT0rnryT40TiqXpsuaGOZS2iC1Mf6PcnnuNuwe8lHdYhIFoslQ1gpAxkAEBkqoWHJpf3XrOr6Pmu+eWpYiy1RyfGGgqW4mSptzI12wPQWEkU3t8cKcVfSqM+n0+IGNw2aAhtYp55DsMOmNR9kqZKvLFA==</CipherValue>
+                                        </CipherData>
+                                    </EncryptedKey>
+                                </KeyInfo>
+                                <CipherData>
+                                    <CipherValue>H1KZOZFmj8XuKLudLP5qPZAXyq69qWnMukX+VEmxqZR7/ybMM1/1EmpDkZ6pKfVQhm3W3r4vNq38zr9xbXWqRkBmTebDqM0OeM14j21Nv4qdVgxvVZOhxt+UFj9nks/mXG+k7rA/HN5JU2v2gXrO+8+ungRZbk6cKGxwbfve36Hn8ODZeyoF2y7JG3/eclFyOa7SbWM4MRf6Fld6vGYwafCDyifCMn00wJEVwCOazfzIgKkvvCaPipDvlHOvfKMgVgtcBRoudZ2WXdseLvS8TA==</CipherValue>
+                                </CipherData>
+                            </EncryptedData>
+                        </EncryptedAttribute>
+                    </saml:AttributeStatement>
+                </saml:Assertion>
+            </samlp:Response>
+        </container>
+    </Transaction>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>BwuSzOCng3456coschfqMNDl0dRxizNhtpZEnXnGR7c=</DigestValue></Reference></SignedInfo><SignatureValue>UQ2jYnfAvhhOmlRy7T1n1+nh0cmVQkoB3V1XlA8h1QFOdUxG4F3ThLc1h/1+hh/DW2sM4/5yegZuD4fpEbJIxX1K9azWKCmWq52q+P8VixkV4ctWm0CckeHgXRmBRd9nEEx8fwgguB2wpcEljPJ/oQMSGWKSLUDZ3Nmsf1XASDU/xWSvQTpvRahvJS0y+N5mBKPt1vUuiVW7Z7RsnWil2zduAuaLqWPvCnL+LR9ntaecC7CcXinRJiiB2l7dXQvibmxMLpQNS+GVR5tlNjDYpxw3zuELA5L03cwEqIVpD7d9mny2WemZHp1z2jQpKLgp0BLLUWD5NP0fOWCqruru4w==</SignatureValue><KeyInfo><KeyName>9569C386A2DD9165CBEEE0669DFD093FF675C56B</KeyName></KeyInfo></Signature></AcquirerStatusRes>

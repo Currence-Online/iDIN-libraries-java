@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AcquirerErrorRes xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" productID="NL:BVN:BankID:1.0" version="1.0.0">
+  <createDateTimestamp>2015-06-29T05:46:24.786Z</createDateTimestamp>
+  <Error>
+    <errorCode>EC4200</errorCode>
+    <errorMessage>I am an error message</errorMessage>
+    <errorDetail>And I am an error detail</errorDetail>
+    <suggestedAction>And tell them to do what says here</suggestedAction>
+    <consumerMessage>You should display this message to consumers</consumerMessage>
+  </Error>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>CL9d7fWg/6+yp1+G9wsXbYNrkaBvIsv5Nn1lZaK1+vA=</DigestValue></Reference></SignedInfo><SignatureValue>aN10VMXGee2ELFXhJdS7XQY1DdLldvMImr81RgkE8bqmR30GkHUieGiBm9KmEHIMbN9mqdzDEjTzy4rpdH6yydvl4Ye4SQ578eUAqkG2hMDuZjc7gw8uYU/LGI+eK/lZl/8ky0vXJWbuK9vOuoc/xNw32RRF18V5P8cSxgqhgr9mXW2QDYFCo2YAy5PDaeHAmLr2iXPhFnTn7dVOYzwWhOIINzEL/qDUUZ3t9hzWwMlDJtaXDcjOfkQPA4Q3D+4XuMiweis/bPaeKJi5FkGniV0Un9wtRfCLP09fHR1to9zRLrJ+Eq50ptyCYD+WeyAYp/vZGhGxy1ZU2wFJPhK/RA==</SignatureValue><KeyInfo><KeyName>037084CEE001B2F8F658D822EE5EA0A076A184E9</KeyName></KeyInfo></Signature></AcquirerErrorRes>

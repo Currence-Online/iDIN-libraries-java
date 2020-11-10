@@ -134,7 +134,7 @@ public class SamlAttribute {
     /**
      * Get Consumer's document ID
      */
-    public static final String DocumentId = "urn:nl:bvn:bankid:1.0:consumer.documentID";
+    public static final String DocumentId = "urn:nl:bvn:bankid:1.0:merchant.documentID";
     
     
     private String name;

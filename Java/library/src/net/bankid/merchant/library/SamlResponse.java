@@ -2,11 +2,10 @@ package net.bankid.merchant.library;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -33,6 +32,7 @@ public class SamlResponse extends AcceptanceReportBase {
     private String version;
     private Map<String, String> attributes;
     private SamlStatus status;
+    private List<SamlAttributesEncryptionKey> attributesEncryptionKeys;
     
     private static final String NAMESPACE_PROTOCOL_URL = "urn:oasis:names:tc:SAML:2.0:protocol";
     private static final String NAMESPACE_ASSERTION_URL = "urn:oasis:names:tc:SAML:2.0:assertion";
@@ -50,7 +50,8 @@ public class SamlResponse extends AcceptanceReportBase {
             this.merchantReference = response.getInResponseTo();
             this.acquirerID = response.getIssuer().getValue();
             this.version = response.getVersion();
-                        
+            List<SamlAttributesEncryptionKey> encryptionKeys = new ArrayList<>();
+
             if (response.getStatus() != null)
             {
                 StatusCodeType statusCodeLevel2 = response.getStatus().getStatusCode().getStatusCode();
@@ -76,15 +77,23 @@ public class SamlResponse extends AcceptanceReportBase {
             
             attributes = new HashMap<>();
             {
-                Document doc = db.parse(new ByteArrayInputStream(decryptElement(config, nameIDEncrypted).getBytes()));
+                byte[] decryptedKey = getDecryptedKey(config, nameIDEncrypted);
+                Document doc = db.parse(new ByteArrayInputStream(decryptElement(nameIDEncrypted, decryptedKey).getBytes()));
                 Node node = doc.getDocumentElement().getFirstChild();
                 String value = node.getTextContent();
-                if (value.startsWith("TRANS")) {
+
+                SamlAttributesEncryptionKey samlAttributesEncryptionKey = new SamlAttributesEncryptionKey();
+                samlAttributesEncryptionKey.setAesKey(decryptedKey);
+
+                if(value.startsWith("TRANS")) {
                     attributes.put(SamlAttribute.ConsumerTransientID, value);
-                }
-                else {
+                    samlAttributesEncryptionKey.setAttributeName(SamlAttribute.ConsumerTransientID);
+                } else {
                     attributes.put(SamlAttribute.ConsumerBin, value);
+                    samlAttributesEncryptionKey.setAttributeName(SamlAttribute.ConsumerBin);
                 }
+
+                encryptionKeys.add(samlAttributesEncryptionKey);
             }
             
             List<StatementAbstractType> list = assertion.getStatementOrAuthnStatementOrAuthzDecisionStatement();
@@ -95,8 +104,9 @@ public class SamlResponse extends AcceptanceReportBase {
                     for (Object attr : attributeStatement.getAttributeOrEncryptedAttribute()) {
                         if (attr instanceof EncryptedElementType) {
                             EncryptedElementType element = (EncryptedElementType) attr;
-                            String xml = decryptElement(config, element);
-                            Document doc = db.parse(new ByteArrayInputStream(xml.getBytes("UTF-8")));
+                            byte[] decryptedKey = getDecryptedKey(config, element);
+                            String xml = decryptElement(element, decryptedKey);
+                            Document doc = db.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
                             
                             String key = doc.getDocumentElement().getAttribute("Name");
                             
@@ -108,6 +118,11 @@ public class SamlResponse extends AcceptanceReportBase {
                             String value = node.getTextContent();
                             
                             attributes.put(key, value);
+
+                            SamlAttributesEncryptionKey samlAttributesEncryptionKey = new SamlAttributesEncryptionKey();
+                            samlAttributesEncryptionKey.setAttributeName(key);
+                            samlAttributesEncryptionKey.setAesKey(decryptedKey);
+                            encryptionKeys.add(samlAttributesEncryptionKey);
                         }
                         else if (attr instanceof AttributeType) {
                             AttributeType element = (AttributeType) attr;
@@ -124,20 +139,26 @@ public class SamlResponse extends AcceptanceReportBase {
                     }
                 }
             }
+
+            this.attributesEncryptionKeys = Collections.unmodifiableList(encryptionKeys);
         }
         catch (Exception e) {
             throw new CommunicatorException(e);
         }
     }
-    
-    private String decryptElement(Configuration config, EncryptedElementType encryptedElement) throws Exception
-    {
-        JAXBElement<EncryptedKeyType> encryptedKeyJaxb =
-            JAXBElement.class.cast(encryptedElement.getEncryptedData().getKeyInfo().getContent().get(0)); 
+
+    private byte[] getDecryptedKey(Configuration config, EncryptedElementType encryptedElement) throws Exception {
+        JAXBElement<EncryptedKeyType> encryptedKeyJaxb = JAXBElement.class.cast(encryptedElement.getEncryptedData()
+                                                                                                .getKeyInfo()
+                                                                                                .getContent()
+                                                                                                .get(0));
         EncryptedKeyType encryptedKey = encryptedKeyJaxb.getValue();
-        
-        byte[] decryptedKey = decryptKey(config, encryptedKey);
-        
+
+        return decryptKey(config, encryptedKey);
+    }
+
+    private String decryptElement(EncryptedElementType encryptedElement, byte[] decryptedKey) throws Exception
+    {
         byte[] bytes = encryptedElement.getEncryptedData().getCipherData().getCipherValue();
         
         // first 16 bytes = Initialization vector
@@ -164,8 +185,7 @@ public class SamlResponse extends AcceptanceReportBase {
             dataLength = decrypted.length - decrypted[decrypted.length - 1];
         }
         
-        String s = new String(decrypted, 0, dataLength, "UTF-8").trim();
-        return s;
+        return new String(decrypted, 0, dataLength, StandardCharsets.UTF_8).trim();
     }
     
     private byte[] decryptKey(Configuration config, EncryptedKeyType encryptedKey) throws Exception {
@@ -234,5 +254,13 @@ public class SamlResponse extends AcceptanceReportBase {
      */
     public SamlStatus getStatus() {
         return status;
+    }
+
+    /**
+     *
+     * @return the attributes encryption keys
+     */
+    public List<SamlAttributesEncryptionKey> getAttributesEncryptionKeys(){
+        return attributesEncryptionKeys;
     }
 }

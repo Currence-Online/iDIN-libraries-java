@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DirectoryRes xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" productID="NL:BVN:BankID:1.0" version="1.0.0">
+    <createDateTimestamp>123456789</createDateTimestamp>
+    <Acquirer>
+        <acquirerID>1234</acquirerID>
+    </Acquirer>
+    <Directory>
+        <directoryDateTimestamp>123456789</directoryDateTimestamp>
+        <Country>
+            <countryNames>Nederland</countryNames>
+            <Issuer>
+                <issuerID>TESTNL20001</issuerID>
+                <issuerName>TEST NL 20001, status "Success"</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>TESTNL20002</issuerID>
+                <issuerName>TEST NL 20002, status "Open"</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>TESTNL20003</issuerID>
+                <issuerName>TEST NL 20003, status "Cancelled"</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>TESTNL20004</issuerID>
+                <issuerName>TEST NL 20004, status "Expired"</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>TESTNL20005</issuerID>
+                <issuerName>TEST NL 20005, status "Failure"</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>TESTNL20006</issuerID>
+                <issuerName>TEST NL 20006, delayed response</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>TESTNL20007</issuerID>
+                <issuerName>TEST NL 20007</issuerName>
+            </Issuer>
+            <Issuer>
+                <issuerID>TESTNL20008</issuerID>
+                <issuerName>TEST NL 20008, status "Pending"</issuerName>
+            </Issuer>
+        </Country>
+    </Directory>
+</DirectoryRes>

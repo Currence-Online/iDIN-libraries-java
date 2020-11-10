@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AcquirerStatusRes version="1.0.0" productID="NL:BVN:BankID:1.0" xmlns="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <createDateTimestamp>2015-01-01T09:30:47.123Z</createDateTimestamp>
+  <Acquirer>
+    <acquirerID>1234</acquirerID>
+  </Acquirer>
+  <Transaction>
+    <transactionID>1234123456789012</transactionID>
+    <status>Open</status>
+    <statusDateTimestamp>2015-01-01T09:30:47Z</statusDateTimestamp>
+  </Transaction>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>ZdTW9ddrX8ftxCul5lidMrfxywVBPZRtdP3kZFwWFXo=</DigestValue></Reference></SignedInfo><SignatureValue>KHe8UnZAOP+6QhlerLc0g4Tj3gaMMqi8E9y1zdTXM0159VTTv4QJ4BokLxCjjiCyPEi/y0Li75ZRIU6vskopxsmGoe+GHl+/OSqEbk4HQfFHnYiNbs4ol/WEEp/opjY5HMKkg3YLhqTrc6s2B2C4xyAokLakeqfsZHx94I0w5Maro6kStZXPrgKQkCfvpNzmSlGqYaVq6IvM8TtRmyRQArqUZs65estfchhrDuGvAQytBQRuPokAFrVQkuyl3fMn0OrftkxsWz380/CsZe9NK8e+MARoy+rNIJX4FlEMNtQbznly7wSt6c4Ae0K2xJn8kEd4Kq7fAIjdP5+nH9fc9w==</SignatureValue><KeyInfo><KeyName>037084CEE001B2F8F658D822EE5EA0A076A184E9</KeyName></KeyInfo></Signature></AcquirerStatusRes>
