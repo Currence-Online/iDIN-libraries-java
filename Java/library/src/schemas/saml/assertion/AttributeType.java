@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyAttribute;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.namespace.QName;
@@ -43,7 +42,6 @@ import javax.xml.namespace.QName;
 @XmlType(name = "AttributeType", propOrder = {
     "attributeValue"
 })
-@XmlRootElement
 public class AttributeType {
 
     @XmlElement(name = "AttributeValue", nillable = true)

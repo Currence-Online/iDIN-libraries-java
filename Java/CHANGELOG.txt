@@ -1,5 +1,8 @@
 Release Notes BankId.Merchant.Library
 
+v 1.2.6
+#130431: iDIN Signing extension - The library publishes the intermediate symmetric keys for each of the attributes
+
 v 1.2.5
 # 128248: COT-526: Add the library version in the logs
 # 122620: COT-429: [Java] Improve version control in GitHub for Java iDIN Software Libraries
