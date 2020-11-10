@@ -110,7 +110,7 @@ public class Communicator {
                 logger.Log(config, "response xml schema is not valid");
                 throw new CommunicatorException("response xml schema not valid");
             }
-            
+
             if (!xmlProcessor.VerifySignature(config, response)) {
                 logger.Log(config, "response xml signature not valid");
                 throw new CommunicatorException("response xml signature not valid");
