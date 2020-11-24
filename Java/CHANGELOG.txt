@@ -1,4 +1,13 @@
 Release Notes BankId.Merchant.Library
+
+v 1.2.6
+#130431: iDIN Signing extension - The library publishes the intermediate symmetric keys for each of the attributes
+#130248: COT-552: [Java] An error ocurs when performing an Electronic Signing transaction request for Java
+
+v 1.2.5
+# 128248: COT-526: Add the library version in the logs
+# 122620: COT-429: [Java] Improve version control in GitHub for Java iDIN Software Libraries
+
 v 1.2.4
 # 127613: COT-515: [Java] Fix Merchant Library Compilation & Runtime issues on JDK 9 and above versions
 

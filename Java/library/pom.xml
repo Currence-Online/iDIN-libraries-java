@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.bankid</groupId>
 	<artifactId>merchant.library</artifactId>
-	<version>1.0.0</version>
+	<version>1.2.6</version>
 	<packaging>jar</packaging>
 	<name>net.bankid.merchant.library</name>
 
@@ -19,6 +19,7 @@
 		<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
 
 		<java.compile.version>1.8</java.compile.version>
+		<version>${project.version}</version>
 	</properties>
 
 	<build>
@@ -48,6 +49,11 @@
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 					<appendAssemblyId>false</appendAssemblyId>
+					<archive>
+						<manifestEntries>
+							<Implementation-Version>${project.version}</Implementation-Version>
+						</manifestEntries>
+					</archive>
 				</configuration>
 				<executions>
 					<execution>
