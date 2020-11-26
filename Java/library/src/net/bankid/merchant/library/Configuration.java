@@ -59,6 +59,8 @@ public class Configuration {
     }
     
     public Configuration() {
+        this.keyProviderFactory = new KeyStoreKeyProviderFactory();
+        this.keyProvider = this.keyProviderFactory.create(this);
     }
     
     /**
@@ -328,7 +330,14 @@ public class Configuration {
         setServiceLogsPattern(values.getServiceLogsPattern());
         setLoggerFactory(values.getLoggerFactory());
 
-        setKeyProviderFactory(values.getKeyProviderFactory());
+        if(values.getKeyProviderFactory() == null) {
+            setKeyProviderFactory(new KeyStoreKeyProviderFactory());
+        } else if(getKeyProviderFactory() == null || !values.getKeyProviderFactory()
+                                                            .getClass()
+                                                            .equals(getKeyProviderFactory().getClass())) {
+            setKeyProviderFactory(values.getKeyProviderFactory());
+        }
+
         if (getKeyProvider() == null || !getKeyProvider().getClass().equals(values.getKeyProvider().getClass())) {
             setKeyProvider(getKeyProviderFactory().create(this));
         }
