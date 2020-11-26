@@ -1,7 +1,6 @@
 package net.bankid.merchant.library;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
@@ -189,13 +188,7 @@ public class SamlResponse extends AcceptanceReportBase {
     }
     
     private byte[] decryptKey(Configuration config, EncryptedKeyType encryptedKey) throws Exception {
-        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-        InputStream is = config.getKeyStore();
-        is.reset();
-        ks.load(is, config.getKeyStorePassword().toCharArray());
-        KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry)
-            ks.getEntry(config.getMerchantCertificateAlias(),
-                new KeyStore.PasswordProtection(config.getMerchantCertificatePassword().toCharArray()));
+        SigningKeyPair keyEntry = config.getKeyProvider().getMerchantSigningKeyPair();
         X509Certificate cert = (X509Certificate) keyEntry.getCertificate();
 
         byte[] bytes = encryptedKey.getCipherData().getCipherValue();
