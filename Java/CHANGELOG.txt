@@ -1,6 +1,7 @@
 Release Notes BankId.Merchant.Library
 
 v.1.2.7
+Add Pluggable key provider
 #128939: COT-531: [Java] Review PR for "Pluggable key provider"
 
 v 1.2.6
