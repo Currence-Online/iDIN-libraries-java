@@ -23,7 +23,7 @@ public interface IKeyProvider {
      * @throws KeyStoreException
      * @throws IOException
      */
-    public SigningKeyPair getMerchantSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException;
+    SigningKeyPair getMerchantSigningKeyPair() throws CertificateException, UnrecoverableEntryException, NoSuchAlgorithmException, KeyStoreException, IOException;
 
     /**
      * Method to retrieve the acquirer {@link X509Certificate} to use for signature validation
@@ -36,7 +36,7 @@ public interface IKeyProvider {
      * @throws KeyStoreException
      * @throws IOException
      */
-    public X509Certificate getAcquirerCertificate(String acquirerCertificateAlias) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException;
+    X509Certificate getAcquirerCertificate(String acquirerCertificateAlias) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException;
 
     /**
      * Method to initialize this IKeyProvider from the configuration file.
@@ -44,7 +44,7 @@ public interface IKeyProvider {
      * @param doc The configuration file
      * @throws IOException
      */
-    public void Load(Document doc) throws IOException;
+    void Load(Document doc) throws IOException;
 
     /**
      * Method to initialize this IKeyProvider from the given IKeyProvider.
@@ -53,5 +53,5 @@ public interface IKeyProvider {
      * @param values The given IKeyProvider
      * @throws IOException
      */
-    public void Setup(IKeyProvider values) throws IOException;
+    void Setup(IKeyProvider values) throws IOException;
 }

@@ -2,7 +2,6 @@ package net.bankid.merchant.library;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
-import java.security.KeyStore;
 import java.security.cert.X509Certificate;
 import java.util.*;
 import javax.crypto.Cipher;

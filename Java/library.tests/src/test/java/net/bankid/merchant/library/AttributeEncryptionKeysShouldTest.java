@@ -2,16 +2,16 @@ package net.bankid.merchant.library;
 
 import net.bankid.merchant.library.tests.constants.Messages;
 import net.bankid.merchant.library.tests.utils.messages.TestMessage;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DynamicNode;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +30,12 @@ public class AttributeEncryptionKeysShouldTest extends TestBase {
 
 	private static final String ENCRYPTED_DATA = "EncryptedData";
 	private static final String SUBJECT_VALUE = "Some Subject";
+
+	@BeforeEach
+	protected void init() throws ParserConfigurationException, IOException, SAXException {
+		setupConfig();
+		communicator = new Communicator(config);
+	}
 
 	@Test
 	@DisplayName("Test that Status Response has no errors")

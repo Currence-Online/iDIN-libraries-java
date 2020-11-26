@@ -1,5 +1,9 @@
 Release Notes BankId.Merchant.Library
 
+v.1.2.7
+Add Pluggable key provider
+#128939: COT-531: [Java] Review PR for "Pluggable key provider"
+
 v 1.2.6
 #130431: iDIN Signing extension - The library publishes the intermediate symmetric keys for each of the attributes
 #130248: COT-552: [Java] An error ocurs when performing an Electronic Signing transaction request for Java
