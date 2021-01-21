@@ -1,13 +1,11 @@
 package net.bankid.merchant.library;
 
+import static net.bankid.merchant.library.release.ReleaseInfo.getReleaseInfo;
+
 class LoggerFactory implements ILoggerFactory {
 
-    private String getPomVersion() {
-        return this.getClass().getPackage().getImplementationVersion();
-    }
-
-    @Override
-    public ILogger create() {
-        return new Logger(getPomVersion());
-    }
+	@Override
+	public ILogger create() {
+		return new Logger(getReleaseInfo().getVersion());
+	}
 }

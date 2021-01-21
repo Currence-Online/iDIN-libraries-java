@@ -24,13 +24,13 @@ class Logger implements ILogger {
 
     private void Write(Configuration config, String content, Level logLevel) {
         if (config.isLogsEnabled()) {
-            java.util.logging.Logger.getLogger(Logger.class.getName()).log(logLevel, content);
+            java.util.logging.Logger.getLogger(Logger.class.getName()).log(logLevel, versionedLog(content));
         }
     }
 
     private void Write(Configuration config, Throwable e, Level logLevel) {
         if (config.isLogsEnabled()) {
-            java.util.logging.Logger.getLogger(Logger.class.getName()).log(logLevel, null, e);
+            java.util.logging.Logger.getLogger(Logger.class.getName()).log(logLevel, versionedLog(null), e);
         }
     }
 
@@ -73,12 +73,12 @@ class Logger implements ILogger {
     @Override
     public void Log(Configuration config, String message, Object... args) {
         String output = String.format(message, args);
-        Write(config, String.format("[v%s]%s", version, output), Level.INFO);
+        Write(config, output, Level.INFO);
     }
 
     public void Log(Configuration config, String message, Level logLevel, Object... args) {
         String output = String.format(message, args);
-        Write(config, String.format("[v%s]%s", version, output), logLevel);
+        Write(config, output, logLevel);
     }
 
     @Override
@@ -92,5 +92,12 @@ class Logger implements ILogger {
 
     public void LogException(Configuration config, Throwable e) {
         Write(config, e, Level.SEVERE);
+    }
+
+    private String versionedLog(String message) {
+        if(message != null) {
+            return String.format("v[%s] %s", version, message);
+        }
+        return String.format("v[%s]", version);
     }
 }
