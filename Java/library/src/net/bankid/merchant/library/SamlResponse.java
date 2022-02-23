@@ -130,6 +130,8 @@ public class SamlResponse extends AcceptanceReportBase {
                             {
                                 if (o instanceof Element)
                                     value += ((Element) o).getTextContent();
+                                else if (o instanceof String)
+                                    value += o;
                             }
                             
                             attributes.put(key, value);
