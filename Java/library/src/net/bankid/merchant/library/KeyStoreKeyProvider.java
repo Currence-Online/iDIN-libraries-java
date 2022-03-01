@@ -77,6 +77,9 @@ public class KeyStoreKeyProvider implements IKeyProvider {
     }
 
     private KeyStore getJavaKeyStore() throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException {
+        if (keyStore == null) {
+            keyStore = config.getKeyStore();
+        }
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
         InputStream is = getKeyStore();
         is.reset();
