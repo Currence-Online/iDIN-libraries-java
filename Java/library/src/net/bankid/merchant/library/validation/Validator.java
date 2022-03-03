@@ -287,10 +287,6 @@ public class Validator {
 			} else if (requestedServiceId != ServiceIds.Sign) {
 				throw new CommunicatorException("DocumentID should not be filled if the Sign service is not requested.");
 			}
-		} else {
-			if (requestedServiceId == ServiceIds.Sign || (requestedServiceId & ServiceIds.Sign) != 0) {
-				throw new CommunicatorException("DocumentID should be present.");
-			}
 		}
 	}
 }
