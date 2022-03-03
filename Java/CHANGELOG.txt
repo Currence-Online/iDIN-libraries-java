@@ -1,7 +1,12 @@
 Release Notes BankId.Merchant.Library
 
+v.1.2.9
+#133430: COT-622: [Java] Verify remaining open issues and PR on GitHub
+Fix acquiring keystore when its input stream is explicitly provided to the configuration
+Fix attribute parsing when attribute is of type String
+
 v.1.2.8
-#129803: COT-546: [Java] Add version number to the releases 
+#129803: COT-546: [Java] Add version number to the releases
 
 v.1.2.7
 #128939: COT-531: [Java] Review PR for "Pluggable key provider"
